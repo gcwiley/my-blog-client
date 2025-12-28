@@ -1,0 +1,17 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+// angular material
+import { MatButtonModule } from '@angular/material/button';
+
+@Component({
+  selector: 'app-hero',
+  templateUrl: './hero.html',
+  styleUrl: './hero.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterModule, MatButtonModule],
+})
+export class Hero {
+  title = 'Learning Web Development';
+  subtitle = 'Best practices, code samples, and ideas';
+}

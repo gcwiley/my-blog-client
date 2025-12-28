@@ -1,0 +1,14 @@
+@use '../../../styles/helpers/constants';
+
+.navbar-content {
+  max-width: constants.$max-width;
+  margin: auto;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+// sets up space between items within nav bar 
+.flex-spacer {
+   flex: 1 1 auto;
+}
