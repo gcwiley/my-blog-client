@@ -11,8 +11,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-// web app logo
-import { Logo } from '../logo/logo';
 
 @Component({
    selector: 'app-navbar',
@@ -25,7 +23,6 @@ import { Logo } from '../logo/logo';
     MatButtonModule,
     MatMenuModule,
     MatDividerModule,
-    Logo
 ],
 })
 export class NavBar {

@@ -3,7 +3,7 @@
   margin: 1rem;
 }
 
-// during loading of projects
+// during loading of posts
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-// when no projects are found
+// when no posts are found
 .empty-message {
   display: flex;
   justify-content: center;

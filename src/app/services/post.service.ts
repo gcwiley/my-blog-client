@@ -9,32 +9,35 @@ import { catchError, Observable, of, throwError, map } from 'rxjs';
 // post interfaces
 import { Post, PostInput } from '../types/post.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
+// define a standard wrapper for your backend response
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+}
+
+@Injectable({ providedIn: 'root' })
 export class PostService {
-  // comment here
-  private postsUrl = '/api/posts'; // URL to web api
+  // ideally, move this to environment.apiUrl
+  private readonly API_URL = '/api/posts';
 
   private http = inject(HttpClient);
 
   // GET: GET ALL POSTS
   public getPosts(): Observable<Post[]> {
-    return this.http.get<{ data: Post[] }>(this.postsUrl).pipe(
+    return this.http.get<ApiResponse<Post[]>>(this.API_URL).pipe(
       map((res) => res.data),
       catchError((error) => this.handleError(error)),
     );
   }
 
-  // GET: GET POST BY ID
+  // GET: - GET POST BY ID
   public getPostById(id: string): Observable<Post> {
-    const url = `${this.postsUrl}/${id}`;
-    return this.http
-      .get<{ success: boolean; message?: string; data: Post }>(url)
-      .pipe(
-        map((res) => res.data), // unwrap the backend wrapper
-        catchError((error) => this.handleError(error)),
-      );
+    const url = `${this.API_URL}/${id}`;
+    return this.http.get<ApiResponse<Post>>(url).pipe(
+      map((res) => res.data),
+      catchError((error) => this.handleError(error)),
+    );
   }
 
   // GET - SEARCH POSTS
@@ -44,17 +47,15 @@ export class PostService {
       return of([]);
     }
     const params = new HttpParams().set('query', term);
-    return this.http
-      .get<{ data: Post[] }>(`${this.postsUrl}/search`, { params })
-      .pipe(
-        map((res) => res.data),
-        catchError((error) => this.handleError(error)),
-      );
+    return this.http.get<ApiResponse<Post[]>>(this.API_URL, { params }).pipe(
+      map((res) => res.data),
+      catchError((error) => this.handleError(error)),
+    );
   }
 
   // GET: - GET POST COUNT
   public getPostsCount(): Observable<number> {
-    return this.http.get<{ data: number }>('/api/posts/count').pipe(
+    return this.http.get<ApiResponse<number>>(`${this.API_URL}`).pipe(
       map((res) => res.data),
       catchError((error) => this.handleError(error)),
     );
@@ -62,7 +63,7 @@ export class PostService {
 
   // GET: GET RECENT CREATED POSTS
   public getRecentlyCreatedPosts(): Observable<Post[]> {
-    return this.http.get<{ data: Post[] }>('/api/posts/recent').pipe(
+    return this.http.get<ApiResponse<Post[]>>(`${this.API_URL}/recent`).pipe(
       map((res) => res.data),
       catchError((error) => this.handleError(error)),
     );
@@ -70,20 +71,18 @@ export class PostService {
 
   // SAVE METHODS
 
-  // POST: ADD POST
+  // POST: - NEW POST
   public addPost(newPost: PostInput): Observable<Post> {
-    return this.http
-      .post<{ data: Post }>(this.postsUrl, newPost)
-      .pipe(
-        map((res) => res.data),
-        catchError((error) => this.handleError(error)),
-      );
+    return this.http.post<ApiResponse<Post>>(this.API_URL, newPost).pipe(
+      map((res) => res.data),
+      catchError((error) => this.handleError(error)),
+    );
   }
 
   // DELETE: - DELETE POST BY ID
   public deletePostById(id: string): Observable<Post> {
-    const url = `${this.postsUrl}/${id}`;
-    return this.http.delete<{ data: Post }>(url).pipe(
+    const url = `${this.API_URL}/${id}`;
+    return this.http.delete<ApiResponse<Post>>(url).pipe(
       map((res) => res.data),
       catchError((error) => this.handleError(error)),
     );
@@ -91,13 +90,11 @@ export class PostService {
 
   // PUT: - UPDATE POST BY ID
   public updatePostById(id: string, body: Partial<Post>): Observable<Post> {
-    const url = `${this.postsUrl}/${id}`;
-    return this.http
-      .patch<{ data: Post }>(url, body)
-      .pipe(
-        map((res) => res.data),
-        catchError((error) => this.handleError(error)),
-      );
+    const url = `${this.API_URL}/${id}`;
+    return this.http.patch<ApiResponse<Post>>(url, body).pipe(
+      map((res) => res.data),
+      catchError((error) => this.handleError(error)),
+    );
   }
 
   // HANDLE ERROR

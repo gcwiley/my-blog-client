@@ -20,8 +20,8 @@ export type PostInput = Omit<Post, 'id' | 'createdAt' | 'updatedAt'>
 
 // --- HELPER INTERFACES FOR UI LIST ---
 
-// define the post category interface
-export interface PostCategory {
-    value: string;
+// single generic interface
+export interface SelectOption<T = string> {
+    value: T;
     viewValue: string;
 }

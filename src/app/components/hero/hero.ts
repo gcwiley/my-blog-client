@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [RouterModule, MatButtonModule],
 })
 export class Hero {
-  title = 'Learning Web Development';
-  subtitle = 'Best practices, code samples, and ideas';
+  // make these inputs so the component is reusable
+  public title = 'Learning Web Development';
+  public subtitle = 'Best practices, code samples, and ideas';
 }

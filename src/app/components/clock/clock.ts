@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, OnDestroy,  } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Subscription, interval } from 'rxjs';
 
@@ -14,22 +14,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [DatePipe, MatToolbarModule, MatChipsModule],
 })
 export class Clock implements OnInit, OnDestroy {
-  // stores the current time as a Date object
-  public currentTime: Date = new Date();
+  public currentTime = signal(new Date())
   private timeSubscription: Subscription | null = null;
 
   // define time zones in an array
-  public timeZones = [
-    { label: 'Local', offset: 'GMT-4' },
-    { label: 'Zulu', offset: 'GMT' },
-    { label: 'Tel Aviv', offset: 'GMT+2' },
-    { label: 'Kyiv', offset: 'GMT+2' },
+  public readonly timeZones = [
+    { label: 'Local', offset: '' },
+    { label: 'Zulu', offset: 'UTC' },
+    { label: 'Tel Aviv', offset: 'Asia/Jerusalem' },
+    { label: 'Kyiv', offset: 'Europe/Kyiv' },
   ];
 
   // set up the clock update interval of 1 second
   public ngOnInit(): void {
     this.timeSubscription = interval(1000).subscribe(() => {
-      this.currentTime = new Date();
+      this.currentTime.set(new Date())
     });
   }
 
