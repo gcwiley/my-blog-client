@@ -11,12 +11,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltip } from '@angular/material/tooltip';
 
-// album table component
-import { AlbumTable } from '../../albums';
-
-// heroes list component
-import { HeroTable } from '../../heroes';
-
 @Component({
     selector: 'app-admin-page',
     templateUrl: './admin-page.html',
@@ -32,8 +26,6 @@ import { HeroTable } from '../../heroes';
     MatTabsModule,
     MatTooltip,
     RouterModule,
-    AlbumTable,
-    HeroTable
 ]
 })
 export class AdminPage {

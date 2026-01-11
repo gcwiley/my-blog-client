@@ -1,5 +1,7 @@
 # To Do List
 
-* init git repo
+* post to github
 
-* clock component
+* set up eslint
+
+* set up / finish routes

@@ -10,7 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import {
   NavBar,
   Clock,
-  Menu,
   Calendar,
   Hero,
   Footer,
@@ -20,9 +19,9 @@ import {
 import { PostGrid, RecentPosts } from '../../posts';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.html',
-  styleUrls: ['./homepage.scss'],
+  selector: 'app-home-page',
+  templateUrl: './home-page.html',
+  styleUrls: ['./home-page.scss'],
   imports: [
     MatButtonModule,
     MatIconModule,
@@ -31,7 +30,6 @@ import { PostGrid, RecentPosts } from '../../posts';
     NavBar,
     Calendar,
     Clock,
-    Menu,
     Footer,
     Hero,
     PostGrid,

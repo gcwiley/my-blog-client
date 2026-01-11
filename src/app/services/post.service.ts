@@ -1,40 +1,43 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { catchError, Observable, of, throwError, map } from 'rxjs';
 
 // post interfaces
 import { Post, PostInput } from '../types/post.interface';
 
-// set up headers
-const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
+  // comment here
   private postsUrl = '/api/posts'; // URL to web api
 
-  // inject 'HttpClient" into the post service
   private http = inject(HttpClient);
 
-  // GET: all posts from the server - GET POSTS
+  // GET: GET ALL POSTS
   public getPosts(): Observable<Post[]> {
     return this.http.get<{ data: Post[] }>(this.postsUrl).pipe(
       map((res) => res.data),
-      catchError(this.handleError)
+      catchError((error) => this.handleError(error)),
     );
   }
 
-  // GET: a individual post by ID. GET POST BY ID
+  // GET: GET POST BY ID
   public getPostById(id: string): Observable<Post> {
     const url = `${this.postsUrl}/${id}`;
-    return this.http.get<{ data: Post }>(url).pipe(
-      map((res) => res.data),
-      catchError(this.handleError)
-    );
+    return this.http
+      .get<{ success: boolean; message?: string; data: Post }>(url)
+      .pipe(
+        map((res) => res.data), // unwrap the backend wrapper
+        catchError((error) => this.handleError(error)),
+      );
   }
 
-  // GET posts whose name contains search term - SEARCH POSTS
+  // GET - SEARCH POSTS
   public searchPosts(term: string): Observable<Post[]> {
     if (!term.trim()) {
       // if no search term, return an empty post array
@@ -44,55 +47,60 @@ export class PostService {
     return this.http
       .get<{ data: Post[] }>(`${this.postsUrl}/search`, { params })
       .pipe(
-        map((res) => res.data), catchError(this.handleError)
+        map((res) => res.data),
+        catchError((error) => this.handleError(error)),
       );
   }
 
-  // GET: count the posts from database  - GET POST COUNT
+  // GET: - GET POST COUNT
   public getPostsCount(): Observable<number> {
     return this.http.get<{ data: number }>('/api/posts/count').pipe(
       map((res) => res.data),
-      catchError(this.handleError)
+      catchError((error) => this.handleError(error)),
     );
   }
 
-  // GET: recent posts added - GET RECENT POSTS
+  // GET: GET RECENT CREATED POSTS
   public getRecentlyCreatedPosts(): Observable<Post[]> {
     return this.http.get<{ data: Post[] }>('/api/posts/recent').pipe(
       map((res) => res.data),
-      catchError(this.handleError)
+      catchError((error) => this.handleError(error)),
     );
   }
 
   // SAVE METHODS
 
-  // POST: add a new post to the server - ADD POST
+  // POST: ADD POST
   public addPost(newPost: PostInput): Observable<Post> {
     return this.http
-      .post<{ data: Post }>(this.postsUrl, newPost, { headers: headers })
+      .post<{ data: Post }>(this.postsUrl, newPost)
       .pipe(
         map((res) => res.data),
-        catchError(this.handleError)
+        catchError((error) => this.handleError(error)),
       );
   }
 
-  // DELETE: a post by ID from the server - DELETE POST BY ID
+  // DELETE: - DELETE POST BY ID
   public deletePostById(id: string): Observable<Post> {
     const url = `${this.postsUrl}/${id}`;
-    return this.http.delete<{ data: Post }>(url, { headers: headers }).pipe(
+    return this.http.delete<{ data: Post }>(url).pipe(
       map((res) => res.data),
-      catchError(this.handleError));
+      catchError((error) => this.handleError(error)),
+    );
   }
 
-  // PUT: update the post in the database - UPDATE POST BY ID
+  // PUT: - UPDATE POST BY ID
   public updatePostById(id: string, body: Partial<Post>): Observable<Post> {
     const url = `${this.postsUrl}/${id}`;
     return this.http
-      .patch<{ data: Post }>(url, body, { headers: headers })
-      .pipe(map((res) => res.data), catchError(this.handleError));
+      .patch<{ data: Post }>(url, body)
+      .pipe(
+        map((res) => res.data),
+        catchError((error) => this.handleError(error)),
+      );
   }
 
-  // enhanced error handler that centralized error handling - HANDLE ERROR
+  // HANDLE ERROR
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
@@ -100,9 +108,9 @@ export class PostService {
       errorMessage = `A client-side error occurred: ${error.error.message}`;
     } else {
       // backend error
-      errorMessage = `Backend returned code ${error.status}, body was ${JSON.stringify(
-        error.error
-      )}`;
+      errorMessage = `Backend returned code ${
+        error.status
+      }, body was ${JSON.stringify(error.error)}`;
     }
     console.error('There was an error:', errorMessage);
     return throwError(() => new Error(errorMessage));

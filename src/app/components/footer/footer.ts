@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { VERSION } from '@angular/core';
+import { ChangeDetectionStrategy, Component, VERSION } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -9,6 +8,6 @@ import { VERSION } from '@angular/core';
   imports: [],
 })
 export class Footer {
-  version = VERSION.full;
-  year = new Date().getFullYear();
+  public readonly version = VERSION.full;
+  public readonly year = new Date().getFullYear();
 }

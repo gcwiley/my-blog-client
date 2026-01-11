@@ -95,7 +95,7 @@ export class PostGrid implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
-  // optional: if you need to track items for *ngFor preformance
+  // optional: if you need to track items for *ngFor performance 
   public trackByPostId(index: number, post: Post): string {
     return post.id;
   }
