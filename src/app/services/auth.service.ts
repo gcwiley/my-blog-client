@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 // rxjs
 import { Observable, BehaviorSubject, tap, map } from 'rxjs';
@@ -17,6 +18,7 @@ export class AuthService {
   );
 
   private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
 
   // BehaviorSubject to hold the current user information
   private readonly currentUser = new BehaviorSubject<{
@@ -105,6 +107,7 @@ export class AuthService {
     localStorage.removeItem(this.USERNAME_KEY);
     this.authStatus.next(false);
     this.currentUser.next(null);
+    this.router.navigate(['/signin']);
   }
 
   // Observable to expose the authentication status

@@ -6,12 +6,12 @@
 
 * Fix Dark Mode Toggle - A permanent switch in the navbar that saves user preference to localStorage and toggles the light and dark material you've already defined.
 
-* grand canyon image
-
-* fix routing with sign out button
+* replace image with grand canyon image
 
 * fix action buttons on post form.
 
 * fix all linting issues
 
 * add tags to post details page
+
+* add google cloud storage instead of local storage
