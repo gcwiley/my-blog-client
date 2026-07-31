@@ -1,5 +1,3 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
 # environment variables - prevents private env vars from being stored in public github repo
 src/environments/environment.ts
 src/environments/environment.prod.ts

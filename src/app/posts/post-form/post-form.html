@@ -95,6 +95,26 @@
           >
           }
         </mat-form-field>
+
+        <!-- tags -->
+        <mat-form-field class="grid-col-2" appearance="outline">
+          <mat-label>Tags</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Post tags">
+            @for (tag of tags(); track tag) {
+            <mat-chip-row (removed)="removeTag(tag)">
+              {{ tag }}
+              <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+            }
+          </mat-chip-grid>
+          <input
+            placeholder="Add a tag..."
+            [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addTag($event)" />
+        </mat-form-field>
       </div>
     </mat-card-content>
 

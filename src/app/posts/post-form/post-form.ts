@@ -18,6 +18,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 // post service and interface
 import { PostService } from '../../services/post.service';
@@ -43,12 +47,31 @@ import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatChipsModule,
+    MatIconModule,
   ],
 })
 export class PostForm implements OnInit {
   public mode = signal<'create' | 'edit'>('create');
   public isSaving = signal(false);
   public submitted = signal(false);
+  public tags = signal<string[]>([]);
+
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  public addTag(event: MatChipInputEvent): void {
+    const value = (event.value ?? '').trim().toLowerCase();
+    if (value && !this.tags().includes(value)) {
+      this.tags.update((tags) => [...tags, value]);
+      this.postForm.markAsDirty();
+    }
+    event.chipInput?.clear();
+  }
+
+  public removeTag(tag: string): void {
+    this.tags.update((tags) => tags.filter((t) => t !== tag));
+    this.postForm.markAsDirty();
+  }
 
   public hasUnsavedChanges(): boolean {
     return this.postForm.dirty;
@@ -98,6 +121,7 @@ export class PostForm implements OnInit {
               ? new Date(post.publishedDate)
               : null,
           });
+          this.tags.set(post.tags ?? []);
         }
       });
   }
@@ -109,7 +133,10 @@ export class PostForm implements OnInit {
       return;
     }
 
-    const formValue = this.postForm.value as PostInput;
+    const formValue = {
+      ...(this.postForm.value as PostInput),
+      tags: this.tags(),
+    };
 
     if (this.mode() === 'create') {
       this.postService

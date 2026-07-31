@@ -49,7 +49,6 @@ export class PostDeleteDirective {
     this.confirm
       .openCustomConfirmDialog(CustomConfirmDialog.Delete)
       .pipe(
-        takeUntilDestroyed(this.destroyRef),
         filter((confirmed) => !!confirmed),
         switchMap(() => this.postService.deletePostById(this.id())),
         catchError((error) => {
@@ -60,6 +59,7 @@ export class PostDeleteDirective {
           return EMPTY;
         }),
         finalize(() => this.isDeleting.set(false)),
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe(() => {
         this.deleted.emit(this.id());

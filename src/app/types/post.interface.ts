@@ -1,7 +1,7 @@
 // ISO 8601 date/time string type for consistent date handling across the app
 export type ISODateString = string;
 
-// define the post interface 
+// define the post interface
 // represents a blog post with its properties
 export interface Post {
   id: string;
@@ -9,6 +9,7 @@ export interface Post {
   author: string;
   body: string;
   category: string;
+  tags: string[];
   isFavorite: boolean;
   publishedDate: ISODateString | null;
   readonly createdAt: ISODateString;
@@ -27,7 +28,7 @@ export interface SelectOption<T = string> {
   viewValue: string;
 }
 
-// define the attachment interface 
+// define the attachment interface
 // represents a file attached to a post
 export interface Attachment {
   id: string;
