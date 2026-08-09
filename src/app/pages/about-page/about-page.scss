@@ -6,14 +6,30 @@
   display: flex;
   flex-direction: row;
   min-height: 100vh;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
 }
 
 .main-content {
   flex-basis: constants.$main-content-flex-basis;
   max-width: constants.$main-content-max-width;
+
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }
 
 .side-content {
   flex-basis: constants.$side-content-flex-basis;
   max-width: constants.$side-content-max-width;
+
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
 }

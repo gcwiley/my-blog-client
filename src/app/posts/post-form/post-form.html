@@ -80,21 +80,22 @@
         </mat-form-field>
 
         <!-- body -->
-        <mat-form-field class="grid-col-2" appearance="outline">
-          <mat-label>Content</mat-label>
-          <textarea
-            matInput
-            rows="8"
+        <div class="grid-col-2">
+          <label class="quill-label" for="body-editor">Content</label>
+          <quill-editor
+            id="body-editor"
             formControlName="body"
-            title="Body"
-            aria-describedby="body-error"></textarea>
-          @if (this.postForm.controls['body'].hasError('required') &&
+            [modules]="quillModules"
+            placeholder="Write your post..."
+            theme="snow">
+          </quill-editor>
+          @if (postForm.controls['body'].hasError('required') &&
           (postForm.controls.body.touched || submitted())) {
           <mat-error id="body-error"
             >Please provide content for your post.</mat-error
           >
           }
-        </mat-form-field>
+        </div>
 
         <!-- tags -->
         <mat-form-field class="grid-col-2" appearance="outline">

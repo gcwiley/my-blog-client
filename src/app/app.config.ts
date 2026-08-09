@@ -1,4 +1,5 @@
 import { ApplicationConfig } from '@angular/core';
+import { provideQuillConfig } from 'ngx-quill';
 import {
   provideRouter,
   withComponentInputBinding,
@@ -24,5 +25,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
     ),
     provideHttpClient(withInterceptors([authInterceptor])),
+    provideQuillConfig({}),
   ],
 };

@@ -7,7 +7,12 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
+// rxjs
 import { of, first, switchMap, finalize } from 'rxjs';
+
+// import quill
+import { QuillModule } from 'ngx-quill';
 
 // angular material
 import { MatCardModule } from '@angular/material/card';
@@ -49,6 +54,7 @@ import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';
     MatNativeDateModule,
     MatChipsModule,
     MatIconModule,
+    QuillModule,
   ],
 })
 export class PostForm implements OnInit {
@@ -58,6 +64,16 @@ export class PostForm implements OnInit {
   public tags = signal<string[]>([]);
 
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  readonly quillModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ header: [1, 2, 3, false] }],
+      ['link', 'blockquote', 'code-block'],
+      ['clean'],
+    ],
+  };
 
   public addTag(event: MatChipInputEvent): void {
     const value = (event.value ?? '').trim().toLowerCase();

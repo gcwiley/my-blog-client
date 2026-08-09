@@ -15,3 +15,11 @@
 * add tags to post details page
 
 * add google cloud storage instead of local storage
+
+* refactor post details list
+
+* reformat search bar
+
+* make about page responsive
+
+* fix close button on announcements bar
