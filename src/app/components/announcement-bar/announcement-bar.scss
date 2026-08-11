@@ -81,7 +81,10 @@
 
 .dismiss-btn {
   flex-shrink: 0;
-  width: 2rem; // Use rem for consistency
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
   height: 2rem;
   min-width: 2rem;
   color: inherit;

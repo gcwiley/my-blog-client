@@ -24,7 +24,7 @@
   gap: 1.25rem 1.5rem;
 
   @media (max-width: 768px) {
-    grid-template-columns: 1fr; // Single column on small screens
+    grid-template-columns: 1fr; // single column on small screens
   }
 }
 
@@ -47,7 +47,54 @@ mat-form-field {
   padding: 0.5rem 0;
 }
 
-.card-actions {
+.quill-wrapper {
+  quill-editor {
+    display: block;
+    border-radius: 4px;
+    border: 1px solid var(--mat-sys-outline);
+    transition: border-color 0.15s ease;
+
+    &:focus-within {
+      border-color: var(--mat-sys-primary);
+      border-width: 2px;
+    }
+  }
+
+  // ::ng-deep needed to reach Quill's dynamically-rendered DOM
+  ::ng-deep {
+    .ql-toolbar {
+      border: none;
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
+      border-radius: 4px 4px 0 0;
+      font-family: inherit;
+    }
+
+    .ql-container {
+      border: none;
+      border-radius: 0 0 4px 4px;
+      min-height: 450px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+  }
+
+  .quill-label {
+    display: block;
+    font-size: 12px;
+    color: var(--mat-sys-on-surface-variant);
+    margin-bottom: 4px;
+    padding-left: 1rem;
+  }
+
+  mat-error {
+    display: block;
+    font-size: 12px;
+    margin-top: 4px;
+    padding-left: 1rem;
+  }
+}
+
+.form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
@@ -59,34 +106,6 @@ mat-form-field {
     height: 44px;
     border-radius: 22px;
     font-weight: 600;
-    transition: all 0.3s ease;
-
-    &:hover:not(:disabled) {
-      transform: translateY(-1px);
-    }
-  }
-
-  .quill-label {
-    font-size: 12px;
-    color: var(--mat-sys-on-surface-variant);
-    margin-bottom: 4px;
-    display: block;
-  }
-
-  quill-editor {
-    display: block;
-    border-radius: 4px;
-    border: 1px solid var(--mat-sys-outline);
-
-    .ql-toolbar {
-      border-radius: 4px 4px 0 0;
-    }
-
-    .ql-container {
-      border-radius: 0 0 4px 4px;
-      min-height: 200px;
-      font-size: 16px;
-    }
   }
 
   @media (max-width: 600px) {

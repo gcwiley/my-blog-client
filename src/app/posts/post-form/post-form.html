@@ -80,7 +80,7 @@
         </mat-form-field>
 
         <!-- body -->
-        <div class="grid-col-2">
+        <div class="grid-col-2 quill-wrapper">
           <label class="quill-label" for="body-editor">Content</label>
           <quill-editor
             id="body-editor"
@@ -104,7 +104,10 @@
             @for (tag of tags(); track tag) {
             <mat-chip-row (removed)="removeTag(tag)">
               {{ tag }}
-              <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <button
+                matChipRemove
+                type="button"
+                [attr.aria-label]="'remove ' + tag">
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip-row>
@@ -119,8 +122,8 @@
       </div>
     </mat-card-content>
 
-    <mat-card-actions class="card-actions">
-      <button mat-stroked-button type="button" (click)="postForm.reset()">
+    <mat-card-actions class="form-actions">
+      <button matButton="filled" type="button" (click)="postForm.reset()">
         Clear
       </button>
       <span class="flex-spacer"></span>

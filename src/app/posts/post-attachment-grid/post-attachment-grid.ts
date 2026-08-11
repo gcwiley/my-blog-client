@@ -9,9 +9,10 @@ import {
 } from '@angular/core';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+
+// rxjs
+import { Observable, BehaviorSubject, of, first, finalize } from 'rxjs';
 import { catchError, filter, map, startWith, switchMap } from 'rxjs/operators';
-import { first, finalize } from 'rxjs';
 
 // angular material
 import { MatCardModule } from '@angular/material/card';

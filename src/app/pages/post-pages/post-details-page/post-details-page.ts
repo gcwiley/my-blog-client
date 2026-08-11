@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatDividerModule } from '@angular/material/divider';
 
 // shared components
 import { Navbar, Clock, Footer } from '../../../components';
@@ -14,6 +15,7 @@ import {
   PostDescription,
   PostDetails,
   PostAttachmentGrid,
+  PostTags,
 } from '../../../posts';
 
 @Component({
@@ -28,9 +30,11 @@ import {
     PostDescription,
     PostDetails,
     PostAttachmentGrid,
+    PostTags,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
+    MatDividerModule,
   ],
 })
 export class PostDetailsPage {

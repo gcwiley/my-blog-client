@@ -34,6 +34,7 @@ import { PostInput, SelectOption } from '../../types/post.interface';
 
 // import the post categories
 import { POST_CATEGORIES } from '../../../assets/data/post-data';
+// space
 
 // snack duration
 import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';

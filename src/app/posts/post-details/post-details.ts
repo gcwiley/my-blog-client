@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 
 // rxjs
 import { of, Observable, map, filter, switchMap, catchError } from 'rxjs';
@@ -21,7 +21,8 @@ import { Post } from '../../types/post.interface';
   styleUrl: './post-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    CommonModule,
+    AsyncPipe,
+    DatePipe,
     RouterModule,
     MatListModule,
     MatIconModule,
