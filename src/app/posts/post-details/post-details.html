@@ -1,4 +1,4 @@
-@if (post$ | async; as post) {
+@if (post(); as post) {
 <mat-card class="post-details-card" appearance="outlined">
   <mat-card-header>
     <mat-card-title>Post Details</mat-card-title>
@@ -9,7 +9,9 @@
       <mat-list-item lines="2" role="listitem">
         <mat-icon matListItemIcon color="primary">calendar_month</mat-icon>
         <span matListItemTitle>Date</span>
-        <span matListItemLine>{{ post.publishedDate | date:'mediumDate' }}</span>
+        <span matListItemLine
+          >{{ post.publishedDate | date:'mediumDate' }}</span
+        >
       </mat-list-item>
       <!-- author -->
       <mat-list-item lines="2" role="listitem">
@@ -26,8 +28,4 @@
     </mat-list>
   </mat-card-content>
 </mat-card>
-} @else {
-<div class="loading-container">
-  <mat-spinner diameter="40" aria-label="Loading post details"></mat-spinner>
-</div>
 }

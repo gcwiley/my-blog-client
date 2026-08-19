@@ -1,6 +1,5 @@
 <mat-list class="recent-posts" aria-label="Recent Posts">
   <span mat-subheader>Recent Posts</span>
-
   @if (recentPosts$ | async; as posts) { @for (post of posts; track post.id) {
   <mat-list-item lines="2" [routerLink]="['/posts', post.id]">
     <mat-icon matListItemIcon>article</mat-icon>
@@ -14,8 +13,9 @@
     <span matListItemTitle>No Recent Posts</span>
   </mat-list-item>
   } } @else {
-  <mat-list-item>
-    <span matListItemTitle>Loading...</span>
-  </mat-list-item>
+  <div class="spinner-container">
+    <mat-spinner diameter="36"></mat-spinner>
+  </div>
   }
 </mat-list>
+

@@ -17,3 +17,9 @@
 * refactor post details list
 
 * reformat search bar
+
+* move theme toggle to nav bar
+
+* find out if you can put a mat list inside a mat card.
+
+* add mat-card to recent posts

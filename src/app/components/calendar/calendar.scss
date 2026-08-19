@@ -1,8 +1,8 @@
-@use '../../../styles/helpers/constants';
+@use 'variables';
 
 .calendar {
   width: 100%;
-  border-radius: constants.$border-radius;
+  border-radius: variables.$border-radius;
 
   // section label styling to match recent-posts
   mat-card-header {

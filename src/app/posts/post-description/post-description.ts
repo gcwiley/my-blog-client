@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { AsyncPipe, DatePipe } from '@angular/common';
-
-// rxjs
-import { of, Observable, map, filter, switchMap, catchError } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 // angular material
 import { MatDividerModule } from '@angular/material/divider';
@@ -11,8 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-// post and speech service
-import { PostService } from '../../services/post.service';
+// speech service
 import { SpeechService } from '../../services/speech.service';
 
 // post interface
@@ -24,9 +24,7 @@ import { Post } from '../../types/post.interface';
   styleUrl: './post-description.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AsyncPipe,
     DatePipe,
-    RouterModule,
     MatDividerModule,
     MatButtonModule,
     MatIconModule,
@@ -34,20 +32,6 @@ import { Post } from '../../types/post.interface';
   ],
 })
 export class PostDescription {
-  private readonly route = inject(ActivatedRoute);
-  private readonly postService = inject(PostService);
+  public readonly post = input.required<Post>();
   public readonly speechService = inject(SpeechService);
-
-  public post$: Observable<Post | undefined> = this.route.paramMap.pipe(
-    map((pm) => pm.get('id')),
-    filter((id): id is string => !!id),
-    switchMap((id) =>
-      this.postService.getPostById(id).pipe(
-        catchError((error) => {
-          console.error('Error fetching post:', error);
-          return of(undefined);
-        }),
-      ),
-    ),
-  );
 }

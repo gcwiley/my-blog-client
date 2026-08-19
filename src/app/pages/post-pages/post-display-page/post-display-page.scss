@@ -1,7 +1,7 @@
-@use '../../../../styles/helpers/constants';
+@use 'variables';
 
 .post-grid-page-container {
-  max-width: constants.$max-width;
+  max-width: variables.$max-width;
   margin: 0 auto;             // toolbar is sticky, so no top margin needed here
   padding: 0 1rem;            // screen edge clearance — matches home-page
   min-height: 100vh;

@@ -1,7 +1,7 @@
-@use '../../../styles/helpers/constants';
+@use 'variables';
 
 .about-page-container {
-  max-width: constants.$max-width;
+  max-width: variables.$max-width;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -15,8 +15,8 @@
 }
 
 .main-content {
-  flex-basis: constants.$main-content-flex-basis;
-  max-width: constants.$main-content-max-width;
+  flex-basis: variables.$main-content-flex-basis;
+  max-width: variables.$main-content-max-width;
 
   @media (max-width: 768px) {
     flex-basis: 100%;
@@ -25,8 +25,8 @@
 }
 
 .side-content {
-  flex-basis: constants.$side-content-flex-basis;
-  max-width: constants.$side-content-max-width;
+  flex-basis: variables.$side-content-flex-basis;
+  max-width: variables.$side-content-max-width;
 
   @media (max-width: 768px) {
     flex-basis: 100%;

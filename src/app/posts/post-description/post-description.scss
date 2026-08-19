@@ -1,11 +1,11 @@
-@use '../../../styles/helpers/constants';
+@use 'variables';
 
 .post-description {
   margin-top: 1rem;
   margin-bottom: 2rem;
   padding: 2.5rem;                        // more internal breathing room (was 2rem)
-  border: constants.$border-width constants.$border-style var(--mat-sys-outline-variant);
-  border-radius: constants.$border-radius;
+  border: variables.$border-width variables.$border-style var(--mat-sys-outline-variant);
+  border-radius: variables.$border-radius;
 }
 
 .post-description-header {

@@ -1,9 +1,9 @@
-@use '../../../styles/helpers/constants';
+@use 'variables';
 
 .post-details-card {
   margin-top: 4.5rem;
   margin-bottom: 2rem;
-  border-radius: constants.$border-radius;
+  border-radius: variables.$border-radius;
   overflow: hidden;
 
   mat-card-header {

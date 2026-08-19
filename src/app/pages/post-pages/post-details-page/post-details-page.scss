@@ -1,7 +1,7 @@
-@use '../../../../styles/helpers/constants';
+@use 'variables';
 
 .post-details-page-container {
-  max-width: constants.$max-width;
+  max-width: variables.$max-width;
   margin: 2rem auto;
   padding: 0 1rem;
   display: flex;
@@ -18,15 +18,15 @@
 }
 
 .main-content {
-  flex: 1 1 constants.$main-content-flex-basis;
+  flex: 1 1 variables.$main-content-flex-basis;
   min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
 .side-content {
-  flex: 0 0 constants.$side-content-flex-basis;
-  max-width: constants.$side-content-max-width;
+  flex: 0 0 variables.$side-content-flex-basis;
+  max-width: variables.$side-content-max-width;
   position: sticky;
   top: 4rem;
   align-self: flex-start;

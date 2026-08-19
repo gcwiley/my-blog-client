@@ -17,7 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
 // components
 import { Contact } from '../contact/contact';
 
-// services
+// auth service
 import { AuthService } from '../../services/auth.service';
 
 // constants
@@ -50,10 +50,12 @@ export class Navbar {
   public readonly userEmail$: Observable<string | null> =
     this.authService.userEmail$;
 
+  // open user feedback dialog
   public openFeedbackDialog(): void {
     this.dialog.open(Contact, { width: '480px' });
   }
 
+  // sign out current user
   public onClickSignOut(): void {
     try {
       this.authService.signOutUser(); // handles navigation internally

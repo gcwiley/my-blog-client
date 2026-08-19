@@ -7,10 +7,9 @@ import {
 import { provideRouter, Router } from '@angular/router';
 
 // import auth service
-import { AuthService } from './auth.service';
+import { AuthService } from '../services/auth.service';
 
 // --- helpers ---
-
 function makeMockJwt(payload: Record<string, unknown>): string {
   const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
   const body = btoa(JSON.stringify(payload));
