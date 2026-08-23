@@ -1,7 +1,12 @@
 @use 'variables';
 
+:host {
+  display: block;
+  width: 100%;
+}
+
 .toolbar-container {
-  position: sticky;
+  position: sticky; // Keep the toolbar fixed at the top while scrolling
   top: 0;
   z-index: 10;
   background: var(--mat-sys-surface);
@@ -20,24 +25,8 @@
 }
 
 .flex-spacer {
-  flex: 1 1 auto;
-}
-
-.post-count {
-  font-size: 0.875rem;
-  color: var(--mat-sys-on-surface-variant);
-}
-
-.search-field {
-  flex: 1 1 auto;
-  max-width: 280px;
-  min-width: 120px;
-
-  // reduce default form-field height to match toolbar buttons
-  .mat-mdc-form-field-infix {
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
+  flex: 1 1 auto; // Allow the spacer to grow and fill available space 
+  // Allow the spacer to shrink if necessary
 }
 
 // responsive adjustments
@@ -48,10 +37,6 @@
 
     .flex-spacer {
       display: none;
-    }
-
-    .search-field {
-      max-width: 100%;
     }
 
     mat-button-toggle-group {

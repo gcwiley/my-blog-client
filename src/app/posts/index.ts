@@ -1,5 +1,6 @@
 export { PostAttachmentGrid } from './post-attachment-grid/post-attachment-grid';
 export { PostCarousel } from './post-carousel/post-carousel';
+export { PostCount } from './post-count/post-count';
 export { PostDescription } from './post-description/post-description';
 export { PostDetails } from './post-details/post-details';
 export { PostForm } from './post-form/post-form';

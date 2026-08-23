@@ -1,39 +1,13 @@
-<div class="toolbar-container">
+<div class="toolbar-container" role="toolbar" aria-label="Toolbar">
   <div class="toolbar-content">
-    <button mat-flat-button type="button" routerLink="/posts/create">
+
+    <!-- create post button -->
+    <button matButton type="button" routerLink="/posts/create">
       <mat-icon>add</mat-icon>
       Create Post
     </button>
 
-    <!-- post count -->
-    @if (postCount$ | async; as count) {
-    <span class="post-count">{{ count }} posts</span>
-    }
-
-    <!-- search -->
-    <mat-form-field
-      class="search-field"
-      appearance="outline"
-      subscriptSizing="dynamic">
-      <mat-icon matPrefix>search</mat-icon>
-      <input
-        matInput
-        type="search"
-        placeholder="Search posts..."
-        [value]="searchQuery()"
-        (input)="onSearch($any($event.target).value)"
-        aria-label="Search posts" />
-      @if (searchQuery()) {
-      <button
-        matSuffix
-        mat-icon-button
-        (click)="clearSearch()"
-        aria-label="Clear search">
-        <mat-icon>close</mat-icon>
-      </button>
-      }
-    </mat-form-field>
-
+  <!-- spacer between create post button and sort/view toggles -->
     <span class="flex-spacer"></span>
 
     <!-- toggle sort -->
@@ -68,14 +42,5 @@
       </mat-button-toggle>
     </mat-button-toggle-group>
 
-    <!-- toggle theme -->
-    <button
-      mat-icon-button
-      type="button"
-      (click)="toggleTheme()"
-      [matTooltip]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
-      aria-label="Toggle theme">
-      <mat-icon>{{ isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
-    </button>
   </div>
 </div>

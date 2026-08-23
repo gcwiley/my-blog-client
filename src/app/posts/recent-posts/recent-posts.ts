@@ -24,5 +24,5 @@ import { Post } from '../../types/post.interface';
   ],
 })
 export class RecentPosts {
-  public readonly recentPosts$ = input.required<Post[]>();
+  public readonly recentPosts = input.required<Post[]>();
 }

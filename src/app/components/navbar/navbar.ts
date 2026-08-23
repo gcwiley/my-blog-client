@@ -17,8 +17,9 @@ import { MatDialog } from '@angular/material/dialog';
 // components
 import { Contact } from '../contact/contact';
 
-// auth service
+// auth and theme services
 import { AuthService } from '../../services/auth.service';
+import { ThemeService } from '../../services/theme.service';
 
 // constants
 import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';
@@ -40,6 +41,7 @@ import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';
 })
 export class Navbar {
   private readonly authService = inject(AuthService);
+  private readonly themeService = inject(ThemeService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly dialog = inject(MatDialog);
 
@@ -55,10 +57,15 @@ export class Navbar {
     this.dialog.open(Contact, { width: '480px' });
   }
 
+  // toggle theme
+  public toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
+
   // sign out current user
   public onClickSignOut(): void {
     try {
-      this.authService.signOutUser(); // handles navigation internally
+      this.authService.signOutUser();
       this.snackBar.open('You have successfully signed out.', 'Close', {
         duration: SNACK_BAR_DURATION_MS,
       });
