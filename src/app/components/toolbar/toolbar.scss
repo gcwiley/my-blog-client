@@ -6,7 +6,7 @@
 }
 
 .toolbar-container {
-  position: sticky; // Keep the toolbar fixed at the top while scrolling
+  position: sticky; // keep the toolbar fixed at the top while scrolling
   top: 0;
   z-index: 10;
   background: var(--mat-sys-surface);
@@ -25,8 +25,7 @@
 }
 
 .flex-spacer {
-  flex: 1 1 auto; // Allow the spacer to grow and fill available space 
-  // Allow the spacer to shrink if necessary
+  flex: 1 1 auto; // allow the spacer to grow and fill available space
 }
 
 // responsive adjustments

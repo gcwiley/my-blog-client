@@ -1,0 +1,47 @@
+:host {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.post-count-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--mat-sys-secondary-container, rgba(0, 0, 0, 0.08));
+  color: var(--mat-sys-on-secondary-container, inherit);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  -webkit-user-select: none;
+  user-select: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    background-color: var(
+      --mat-sys-surface-container-highest,
+      rgba(0, 0, 0, 0.12)
+    );
+  }
+}
+
+.count-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--mat-sys-primary, currentColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-number {
+  font-weight: 700;
+}
+
+.count-label {
+  opacity: 0.9;
+}

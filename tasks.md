@@ -14,8 +14,4 @@
 
 * add google cloud storage instead of local storage
 
-* refactor post details list
-
-* reformat search bar
-
 * move theme toggle to nav bar

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 // shared components
 import {
@@ -9,6 +10,9 @@ import {
   Toolbar,
   Footer,
 } from '../../components/index';
+
+// post service
+import { PostService } from '../../services/post.service';
 
 // post components
 import { PostGrid, RecentPosts } from '../../posts';
@@ -28,4 +32,12 @@ import { PostGrid, RecentPosts } from '../../posts';
     RecentPosts,
   ],
 })
-export class Homepage {}
+export class Homepage {
+  private readonly postService = inject(PostService);
+
+  // fetches the last 5 posts that were created
+  public readonly recentPosts = toSignal(
+    this.postService.getRecentlyCreatedPosts(),
+    { initialValue: [] },
+  )
+}

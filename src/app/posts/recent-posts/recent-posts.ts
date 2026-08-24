@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 // angular material
 import { MatListModule } from '@angular/material/list';
@@ -17,6 +18,7 @@ import { Post } from '../../types/post.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DatePipe,
+    RouterModule,
     MatListModule,
     MatIconModule,
     MatCardModule,

@@ -4,7 +4,7 @@
 
 <app-hero></app-hero>
 <app-clock></app-clock>
-<app-toolbar [(searchQuery)]="searchQuery"></app-toolbar>
+<app-toolbar></app-toolbar>
 
 <main
   class="home-page-container"
@@ -17,7 +17,7 @@
 
   <aside class="side-content">
     <app-calendar></app-calendar>
-    <app-recent-posts></app-recent-posts>
+    <app-recent-posts [recentPosts]="recentPosts()"></app-recent-posts>
   </aside>
 </main>
 

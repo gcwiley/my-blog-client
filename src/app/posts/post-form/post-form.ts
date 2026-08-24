@@ -90,6 +90,7 @@ export class PostForm implements OnInit {
     this.postForm.markAsDirty();
   }
 
+  // checks if the form has unsaved changes
   public hasUnsavedChanges(): boolean {
     return this.postForm.dirty;
   }

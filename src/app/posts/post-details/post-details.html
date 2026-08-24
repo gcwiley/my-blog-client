@@ -3,6 +3,7 @@
   <mat-card-header>
     <mat-card-title>Post Details</mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
     <mat-list role="list" aria-label="Post Details">
       <!-- date -->
@@ -10,15 +11,21 @@
         <mat-icon matListItemIcon color="primary">calendar_month</mat-icon>
         <span matListItemTitle>Date</span>
         <span matListItemLine
-          >{{ post.publishedDate | date:'mediumDate' || '-' }}</span
+          >{{ (post.publishedDate | date:'mediumDate') || '-' }}</span
         >
       </mat-list-item>
+
+      <mat-divider></mat-divider>
+
       <!-- author -->
       <mat-list-item lines="2" role="listitem">
         <mat-icon matListItemIcon color="primary">person</mat-icon>
         <span matListItemTitle>Author</span>
         <span matListItemLine>{{ post.author || '-'}}</span>
       </mat-list-item>
+
+      <mat-divider></mat-divider>
+
       <!-- category -->
       <mat-list-item lines="2" role="listitem">
         <mat-icon matListItemIcon color="primary">category</mat-icon>

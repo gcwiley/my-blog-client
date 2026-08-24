@@ -1,35 +1,3 @@
-<!-- toolbar -->
-<div class="table-toolbar">
-  <mat-form-field
-    appearance="outline"
-    class="table-filter"
-    subscriptSizing="dynamic">
-    <mat-label>Filter posts</mat-label>
-    <input
-      matInput
-      (input)="applyFilter($event)"
-      placeholder="Search by title"
-      aria-label="Filter posts" />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
-
-  @if (selection.hasValue()) {
-  <div class="selection-actions">
-    <span class="selection-count">
-      {{ selection.selected.length }} selected
-    </span>
-    <button
-      mat-icon-button
-      color="warn"
-      (click)="deleteSelected()"
-      matTooltip="Delete selected"
-      aria-label="Delete selected posts">
-      <mat-icon>delete_sweep</mat-icon>
-    </button>
-  </div>
-  }
-</div>
-
 <div class="table-container">
   @if (isLoadingResults()) {
   <div class="post-table-loading-shade">
@@ -42,7 +10,12 @@
   </div>
   }
 
-  <table mat-table [dataSource]="dataSource" [trackBy]="trackByPostId" matSort aria-label="Post Table">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    [trackBy]="trackByPostId"
+    matSort
+    aria-label="Post Table">
     <!-- checkbox column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
@@ -114,9 +87,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
   </table>
 </div>
 

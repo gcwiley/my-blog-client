@@ -3,13 +3,22 @@
   <app-clock></app-clock>
 </header>
 
-<main class="post-create-page-container" role="main" aria-label="Post Form Page">
+<main
+  class="post-create-page-container"
+  aria-label="Post Form Page"
+  role="main">
   <article class="main-content">
+    <div class="page-header">
+      <a routerLink="/posts" class="back-link" aria-label="Back to all posts."
+        ><mat-icon>arrow_back</mat-icon>
+        <span>All Posts</span>
+      </a>
+    </div>
     <app-post-form></app-post-form>
   </article>
 
-  <aside class="side-content">
-    <app-recent-posts></app-recent-posts>
+  <aside class="side-content" role="complementary" aria-label="Recent Posts">
+    <app-recent-posts [recentPosts]="recentPosts()"></app-recent-posts>
   </aside>
 </main>
 

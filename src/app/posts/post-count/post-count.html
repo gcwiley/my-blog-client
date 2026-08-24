@@ -1,1 +1,10 @@
-<p>post-count works!</p>
+<span
+  class="post-count-chip"
+  [matTooltip]="count() + ' ' + ' in library'"
+  aria-label="Total posts in library">
+  <mat-icon class="count-icon" aria-hidden="true"
+    >collections_bookmark</mat-icon
+  >
+  <span class="count-numnber">{{ count() }}</span>
+  <span class="count-label">{{ label() }}</span>
+</span>
