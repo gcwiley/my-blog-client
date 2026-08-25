@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 // rxjs
 import { Observable, map, throwError, catchError } from 'rxjs';
 
-// environment
+// environment variables
 import { environment } from '../../environments/environment';
 
 // interfaces
@@ -49,7 +49,7 @@ export class AttachmentService {
       );
   }
 
-  // DELETE: remove an attachment by id
+  // DELETE: remove an attachment by id from a post
   public deleteAttachment(postId: string, id: string): Observable<Attachment> {
     return this.http
       .delete<
@@ -61,7 +61,7 @@ export class AttachmentService {
       );
   }
 
-  // Centralized error handling for HTTP requests
+  // Centralized error handling for HTTP requests 
   private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.status === 0) {
       console.error('Network error:', error.message);

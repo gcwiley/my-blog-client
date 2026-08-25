@@ -16,6 +16,7 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 // routes
 import { routes } from './app.routes';
 
+// Application configuration for the Angular app
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
