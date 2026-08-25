@@ -17,6 +17,7 @@ import { SpeechService } from '../../services/speech.service';
 
 // post interface
 import { Post } from '../../types/post.interface';
+import { stripHtml } from '../../utils/html.utils';
 
 @Component({
   selector: 'app-post-description',
@@ -34,4 +35,6 @@ import { Post } from '../../types/post.interface';
 export class PostDescription {
   public readonly post = input.required<Post>();
   public readonly speechService = inject(SpeechService);
+
+  public stripHtml = stripHtml;
 }

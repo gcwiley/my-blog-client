@@ -11,7 +11,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 // rxjs
 import { of, first, switchMap, finalize } from 'rxjs';
 
-// import quill
+// import quill rich text editor
 import { QuillModule } from 'ngx-quill';
 
 // angular material
@@ -34,9 +34,8 @@ import { PostInput, SelectOption } from '../../types/post.interface';
 
 // import the post categories
 import { POST_CATEGORIES } from '../../../assets/data/post-data';
-// space
 
-// snack duration
+// snack bar duration 
 import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';
 
 @Component({
@@ -64,8 +63,10 @@ export class PostForm implements OnInit {
   public submitted = signal(false);
   public tags = signal<string[]>([]);
 
+  // separator keys for the tag input field
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
+  // configuration for the Quill rich text editor
   readonly quillModules = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],
@@ -76,6 +77,7 @@ export class PostForm implements OnInit {
     ],
   };
 
+  // adds a new tag to the list of tags
   public addTag(event: MatChipInputEvent): void {
     const value = (event.value ?? '').trim().toLowerCase();
     if (value && !this.tags().includes(value)) {
@@ -85,6 +87,7 @@ export class PostForm implements OnInit {
     event.chipInput?.clear();
   }
 
+  // removes a tag from the list of tags
   public removeTag(tag: string): void {
     this.tags.update((tags) => tags.filter((t) => t !== tag));
     this.postForm.markAsDirty();
@@ -95,8 +98,10 @@ export class PostForm implements OnInit {
     return this.postForm.dirty;
   }
 
-  private id!: string | null;
+  // the ID of the post being edited (null if creating a new post)
+  private id: string | null = null;
 
+  // list of available post categories
   readonly categories: SelectOption[] = POST_CATEGORIES;
 
   // inject dependencies
@@ -116,6 +121,7 @@ export class PostForm implements OnInit {
     publishedDate: [null as Date | null, Validators.required],
   });
 
+  // initializes the component and loads the post if in edit mode
   public ngOnInit(): void {
     this.route.paramMap
       .pipe(
@@ -146,11 +152,12 @@ export class PostForm implements OnInit {
 
   // saves a new post to database
   public onSavePost(): void {
-    // error checking
+    this.submitted.set(true);
     if (!this.postForm.valid) {
       return;
     }
 
+    this.isSaving.set(true);
     const formValue = {
       ...(this.postForm.value as PostInput),
       tags: this.tags(),
@@ -179,7 +186,11 @@ export class PostForm implements OnInit {
         });
     } else {
       this.postService
-        .updatePostById(this.id!, this.postForm.value as PostInput)
+        .updatePostById(this.id!, formValue)
+        .pipe(
+          first(),
+          finalize(() => this.isSaving.set(false)),
+        )
         .subscribe({
           next: () => {
             this.snackBar.open('Post successfully updated', 'Close', {

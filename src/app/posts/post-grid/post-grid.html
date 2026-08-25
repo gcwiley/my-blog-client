@@ -15,7 +15,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <p class="post-excerpt">{{ post.body }}</p>
+      <p class="post-excerpt">{{ post.body | truncate:30:'...' }}</p>
     </mat-card-content>
 
     <mat-card-actions align="end">

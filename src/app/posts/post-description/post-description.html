@@ -9,7 +9,7 @@
       mat-icon-button
       [matTooltip]="speechService.isSpeaking() ? 'Stop reading' : 'Read aloud'"
       [attr.aria-label]="speechService.isSpeaking() ? 'Stop reading' : 'Read post aloud'"
-      (click)="speechService.toggle(post.title + '. ' + post.body)">
+      (click)="speechService.toggle(post.title + '. ' + stripHtml(post.body))">
       <mat-icon
         >{{ speechService.isSpeaking() ? 'stop_circle' : 'volume_up'
         }}</mat-icon
@@ -17,6 +17,6 @@
     </button>
   </div>
   <mat-divider></mat-divider>
-  <p>{{ post.body }}</p>
+  <div class="post-body ql-editor" [innerHTML]="post.body"></div>
 </section>
 }

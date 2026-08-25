@@ -33,6 +33,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../types/post.interface';
 import { TimeAgoPipe } from '../../pipes/time-ago.pipe';
+import { TruncatePipe } from '../../pipes/truncate.pipe';
 
 @Component({
   selector: 'app-post-grid',
@@ -43,6 +44,7 @@ import { TimeAgoPipe } from '../../pipes/time-ago.pipe';
     AsyncPipe,
     DatePipe,
     TimeAgoPipe,
+    TruncatePipe,
     RouterModule,
     MatCardModule,
     MatIconModule,
@@ -98,6 +100,7 @@ export class PostGrid implements OnInit {
     );
   }
 
+  // Handle page change event from the paginator
   public onPageChange(event: PageEvent): void {
     this.hasError.set(false);
     this.pageSize.set(event.pageSize);

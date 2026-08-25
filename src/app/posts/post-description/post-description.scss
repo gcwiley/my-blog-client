@@ -41,10 +41,13 @@ mat-divider {
   margin-bottom: 1.75rem;                 // push the body text away from the divider
 }
 
-p {
-  font-size: 1.05rem;                     // slightly larger than default — easier to read
-  line-height: 1.85;                      // generous line spacing for long-form content
+// ::ng-deep required because [innerHTML] content bypasses Angular's view encapsulation
+::ng-deep .post-body {
+  font-size: 1.05rem;
+  line-height: 1.85;
   color: var(--mat-sys-on-surface);
-  margin: 0;
-  max-width: 72ch;                        // optimal line length for readability (~65-75 chars)
+  max-width: 72ch;
+
+  p { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
 }
