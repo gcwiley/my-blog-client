@@ -16,9 +16,11 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+
+// rxjs
 import { catchError, of, finalize } from 'rxjs';
 
-// angular material
+// material components
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,6 +35,7 @@ import { AuthService } from '../../services/auth.service';
 // constants
 import { SNACK_BAR_DURATION_MS } from '../../constants/ui.constants';
 
+// Custom validator to check if passwords match
 function passwordsMatchValidator(
   group: AbstractControl,
 ): ValidationErrors | null {
@@ -41,6 +44,7 @@ function passwordsMatchValidator(
   return password === confirm ? null : { passwordsMismatch: true };
 }
 
+// Error messages for different failure scenarios
 const ERROR_MESSAGES = {
   INVALID_TOKEN: 'This password reset link is invalid or has expired.',
   NETWORK_ERROR: 'A network error occurred. Please try again later.',
@@ -64,6 +68,7 @@ const ERROR_MESSAGES = {
   ],
 })
 export class ResetPasswordPage implements OnInit {
+  // Signals for component state management
   public readonly isLoading = signal(false);
   public readonly submitted = signal(false);
   public readonly tokenMissing = signal(false);
@@ -73,12 +78,14 @@ export class ResetPasswordPage implements OnInit {
 
   private token = '';
 
+  // Dependency injections
   private readonly formBuilder = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly route = inject(ActivatedRoute);
   private readonly snackBar = inject(MatSnackBar);
   private readonly destroyRef = inject(DestroyRef);
 
+  // Form group for reset password form
   public readonly resetPasswordForm: FormGroup = this.formBuilder.group(
     {
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -87,6 +94,7 @@ export class ResetPasswordPage implements OnInit {
     { validators: passwordsMatchValidator },
   );
 
+  // Lifecycle hook for component initialization
   public ngOnInit(): void {
     const token = this.route.snapshot.queryParamMap.get('token');
     if (!token) {
@@ -96,6 +104,7 @@ export class ResetPasswordPage implements OnInit {
     }
   }
 
+  // Handler for form submission
   public onSubmit(): void {
     if (this.resetPasswordForm.invalid || !this.token) return;
 

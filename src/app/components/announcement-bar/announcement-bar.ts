@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 
-// angular material
+// material components
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 

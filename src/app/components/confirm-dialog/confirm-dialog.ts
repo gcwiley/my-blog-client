@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-// angular material
+// material components
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -20,6 +20,5 @@ export interface ConfirmDialogData {
    imports: [MatDialogModule, MatButtonModule ],
 })
 export class ConfirmDialog {
-   // inject dependencies
    public readonly data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);
 }

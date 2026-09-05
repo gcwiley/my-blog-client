@@ -4,7 +4,16 @@
 </header>
 
 <main class="post-details-page-container" aria-label="Post Details Page">
-  @if (post$ | async; as post) {
+  @if (state().loading) {
+  <div class="loading-spinner-container">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+  } @else if (state().error) {
+  <div class="error-container">
+    <p>{{ state().error }}</p>
+    <button matButton="filled">Back to Posts</button>
+  </div>
+  } @else if (state().post; as post) {
   <article class="main-content">
     <button
       mat-icon-button
@@ -18,7 +27,6 @@
         <app-post-description [post]="post"></app-post-description>
       </mat-tab>
       <mat-tab label="Attachments">
-        <!-- fix this! -->
         <app-post-attachment-grid></app-post-attachment-grid>
       </mat-tab>
     </mat-tab-group>

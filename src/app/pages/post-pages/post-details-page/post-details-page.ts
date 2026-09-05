@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { of, switchMap, catchError, map, startWith } from 'rxjs';
 
-// rxjs
-import { of, Observable, map, filter, switchMap, catchError } from 'rxjs';
-
-// angular material
+// material components
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -27,13 +30,18 @@ import {
   PostTags,
 } from '../../../posts';
 
+export interface PostDetailsState {
+  loading: boolean;
+  post?: Post;
+  error?: string;
+}
+
 @Component({
   selector: 'app-post-details-page',
   templateUrl: './post-details-page.html',
   styleUrl: './post-details-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    AsyncPipe,
     Navbar,
     Clock,
     Footer,
@@ -50,23 +58,39 @@ import {
 })
 export class PostDetailsPage {
   private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
   private readonly postService = inject(PostService);
 
-  public readonly post$: Observable<Post | undefined> =
-    this.route.paramMap.pipe(
-      map((pm) => pm.get('id')),
-      filter((id): id is string => !!id),
+  // automatically bound from route /posts/:id
+  public readonly id = input.required<string>();
+
+  // full state stream converted to a signal
+  public readonly state = toSignal(
+    toObservable(this.id).pipe(
       switchMap((id) =>
         this.postService.getPostById(id).pipe(
+          map(
+            (post): PostDetailsState => ({
+              loading: false,
+              post,
+              error: undefined,
+            }),
+          ),
+          startWith({ loading: true, post: undefined, error: undefined }),
           catchError((error) => {
             console.error('Error fetching post:', error);
-            return of(undefined);
+            return of({
+              loading: false,
+              post: undefined,
+              error: 'Failed to load post.',
+            });
           }),
         ),
       ),
-    );
+    ),
+    { initialValue: { loading: true } as PostDetailsState },
+  );
 
+  // navigates back to the list of posts
   public goBack(): void {
     this.router.navigate(['/posts']);
   }

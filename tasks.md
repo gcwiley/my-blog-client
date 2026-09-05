@@ -4,8 +4,6 @@
 
 * Fix Dark Mode Toggle - A permanent switch in the navbar that saves user preference to localStorage and toggles the light and dark material you've already defined.
 
-* replace image with grand canyon image
-
 * fix action buttons on post form.
 
 * fix all linting issues
@@ -14,4 +12,6 @@
 
 * add google cloud storage instead of local storage
 
-* move theme toggle to nav bar
+* move theme toggle to nav bar - use event app as example
+
+* update speech service - use events app as a guide

@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 import { interval } from 'rxjs';
 import { DestroyRef } from '@angular/core';
 
-// angular material
+// material components
 import { MatChipsModule } from '@angular/material/chips';
 
 @Component({

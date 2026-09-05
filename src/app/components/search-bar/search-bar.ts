@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 // rxjs
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
-// angular material
+// material components
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,7 +37,7 @@ export class SearchBar implements OnInit {
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
 
-  public readonly placeholder = input<string>('Search books by title, author...');
+  public readonly placeholder = input<string>('Search posts');
   public readonly debounceMs = input<number>(300);
   public readonly navigateOnSearch = input<boolean>(true);
 
@@ -45,6 +45,7 @@ export class SearchBar implements OnInit {
 
   public readonly searchControl = new FormControl('', { nonNullable: true });
 
+  // lifecycle hook for component initialization
   public ngOnInit(): void {
     this.searchControl.valueChanges
       .pipe(
@@ -56,23 +57,25 @@ export class SearchBar implements OnInit {
         const trimmed = term.trim();
         this.searchTerm.emit(trimmed);
         if (this.navigateOnSearch() && trimmed.length > 0) {
-          this.router.navigate(['/books'], {
+          this.router.navigate(['/posts'], {
             queryParams: { query: trimmed },
           });
         }
       });
   }
 
+  // clears the search input and emits an empty search term
   public onClear(): void {
     this.searchControl.setValue('');
     this.searchTerm.emit('');
   }
 
+  // handles the form submission and navigates to the search results
   public onSubmit(event: Event): void {
     event.preventDefault();
     const term = this.searchControl.value.trim();
     if (this.navigateOnSearch() && term.length > 0) {
-      this.router.navigate(['/books'], {
+      this.router.navigate(['/posts'], {
         queryParams: { query: term },
       });
     }

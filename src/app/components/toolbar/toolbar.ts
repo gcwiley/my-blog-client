@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-// angular material imports
+// material components
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';

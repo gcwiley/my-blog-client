@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http/testing';
 import { provideRouter, Router } from '@angular/router';
 
-// import auth service
+// auth service
 import { AuthService } from '../services/auth.service';
 
 // --- helpers ---
