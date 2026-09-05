@@ -28,7 +28,8 @@ export class Clock implements OnInit {
     { label: 'Local', offset: '' },
     { label: 'Zulu', offset: 'UTC' },
     { label: 'Tel Aviv', offset: 'Asia/Jerusalem' },
-    { label: 'Kyiv', offset: 'Europe/Kyiv' },
+    { label: 'Kyiv', offset: 'Europe/Kiev' },
+    { label: 'Kabul', offset: 'Kabul' },
   ];
 
   // set up the clock update interval of 1 second

@@ -7,7 +7,7 @@
   novalidate
   (ngSubmit)="onSavePost()"
   aria-label="Post Form">
-  <mat-card class="post-form-card" appearance="outlined">
+  <mat-card class="post-form-card" appearance="raised">
     <mat-card-content>
       <div class="form-grid">
         <!-- title -->
@@ -127,7 +127,7 @@
         Clear
       </button>
       <span class="flex-spacer"></span>
-      <button matButton type="submit" [disabled]="!postForm.valid">
+      <button matButton="outlined" type="submit" [disabled]="!postForm.valid">
         {{ mode() === 'create' ? 'Create' : 'Update' }}
       </button>
     </mat-card-actions>

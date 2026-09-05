@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 // rxjs
 import { Observable } from 'rxjs';
 
-// angular material
+// material components
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,10 +14,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialog } from '@angular/material/dialog';
 
-// components
+// contact component
 import { Contact } from '../contact/contact';
 
-// auth and theme services
+// auth service and theme services
 import { AuthService } from '../../services/auth.service';
 import { ThemeService } from '../../services/theme.service';
 
@@ -44,6 +44,7 @@ export class Navbar {
   private readonly themeService = inject(ThemeService);
   private readonly snackBar = inject(MatSnackBar);
   private readonly dialog = inject(MatDialog);
+  public readonly isDark$ = this.themeService.isDark$;
 
   public readonly isAuthenticated$: Observable<boolean> =
     this.authService.isAuthenticated$;
@@ -57,7 +58,7 @@ export class Navbar {
     this.dialog.open(Contact, { width: '480px' });
   }
 
-  // toggle theme
+  // toggle theme between light and dark
   public toggleTheme(): void {
     this.themeService.toggleTheme();
   }

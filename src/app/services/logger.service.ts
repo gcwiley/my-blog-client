@@ -97,8 +97,9 @@ export class LoggerService {
     }
   }
 
-  private sendToRemote(_entry: LogEntry): void {
+  private sendToRemote(entry: LogEntry): void {
     // TODO: send to a remote logging endpoint (e.g. POST /api/logs)
+    void entry;
   }
 
   private getEnvironmentLogLevel(): LogLevel {

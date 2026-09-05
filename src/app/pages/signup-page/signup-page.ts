@@ -15,7 +15,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { catchError, of, finalize } from 'rxjs';
 
-// angular material
+// material components
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';

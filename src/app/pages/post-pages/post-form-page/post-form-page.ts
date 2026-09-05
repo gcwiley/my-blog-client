@@ -9,7 +9,7 @@ import {
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 
-// angular material
+// material components
 import { MatIconModule } from '@angular/material/icon';
 
 // shared components

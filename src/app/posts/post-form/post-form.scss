@@ -8,10 +8,10 @@
 
 .post-form-card {
   padding: 2rem 1.5rem;
-  border-radius: 16px;
-  background: var(--mat-sys-surface-container-low);
-  border: 1px solid var(--mat-sys-outline-variant);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  // border-radius: 16px;
+  // background: var(--mat-sys-surface-container-low);
+  // border: 1px solid var(--mat-sys-outline-variant);
+  // box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 
   @media (max-width: 600px) {
     padding: 1rem;
@@ -101,6 +101,10 @@ mat-form-field {
   margin-top: 2rem;
   padding: 0;
 
+  .flex-spacer {
+    flex: 1 1 auto;
+  }
+
   button {
     min-width: 130px;
     height: 44px;
@@ -111,6 +115,10 @@ mat-form-field {
   @media (max-width: 600px) {
     flex-direction: column-reverse;
     gap: 0.75rem;
+
+    .flex-spacer {
+      display: none;
+    }
 
     button {
       width: 100%;

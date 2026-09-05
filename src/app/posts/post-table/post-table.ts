@@ -18,7 +18,7 @@ import { forkJoin } from 'rxjs';
 // angular cdk
 import { SelectionModel } from '@angular/cdk/collections';
 
-// angular material
+// material components
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';

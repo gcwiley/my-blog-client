@@ -2,16 +2,22 @@
 
 * Add Scroll to Top Button - A floating FAB that appears when the user scrolls down on long posts or the main feed.
 
-* Fix Dark Mode Toggle - A permanent switch in the navbar that saves user preference to localStorage and toggles the light and dark material you've already defined.
-
-* fix action buttons on post form.
-
-* fix all linting issues
-
 * add tags to post details page
 
 * add google cloud storage instead of local storage
 
-* move theme toggle to nav bar - use event app as example
+* fix clock times
 
-* update speech service - use events app as a guide
+* about page update
+
+* hero component css styles
+
+* blue highlights in sign in page
+
+* roboto woff2 file set up
+
+* set up photo gallery
+
+* add tooltips to navbar
+
+* fix gregwiley-dev website
